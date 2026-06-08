@@ -13,6 +13,7 @@
 |---|---|
 | `file-ownership` | Σε κάθε file/folder operation — ελέγχει & διορθώνει root ownership. |
 | `ocmod-modifications` | Όταν γράφω/διορθώνω OCMOD `install.xml` modifications για OpenCart. |
+| `htaccess-hardening` | Όταν σκληραίνω/ελέγχω το `.htaccess` ενός OpenCart store (PHP-deny, security headers, .md block). |
 
 ---
 
@@ -104,7 +105,9 @@ claude_skills/
     └── skills/
         ├── file-ownership/
         │   └── SKILL.md
-        └── ocmod-modifications/
+        ├── ocmod-modifications/
+        │   └── SKILL.md
+        └── htaccess-hardening/
             └── SKILL.md
 ```
 
