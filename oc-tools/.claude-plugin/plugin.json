@@ -1,0 +1,9 @@
+{
+  "name": "oc-tools",
+  "description": "Skills & helpers for OpenCart development",
+  "version": "0.1.0",
+  "author": {
+    "name": "digital4u",
+    "email": "dev@digital4u.gr"
+  }
+}

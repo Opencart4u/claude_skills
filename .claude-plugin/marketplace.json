@@ -1,0 +1,14 @@
+{
+  "name": "claude_skills",
+  "owner": {
+    "name": "digital4u",
+    "email": "dev@digital4u.gr"
+  },
+  "plugins": [
+    {
+      "name": "oc-tools",
+      "source": "./oc-tools",
+      "description": "Skills & helpers for OpenCart development (file ownership, OCMOD modifications, ERP, etc.)"
+    }
+  ]
+}
