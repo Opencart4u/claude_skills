@@ -39,8 +39,42 @@ claude plugin install oc-tools@claude_skills
 
 ## Καθημερινή χρήση
 
-- **Προσθήκη/αλλαγή skill:** edit στο repo → `git push` → στα μηχανήματα `/plugin marketplace update claude_skills`.
-- Μετά το install, φορτώνονται **αυτόματα σε κάθε νέο session** — δεν κάνεις τίποτα.
+- **Προσθήκη/αλλαγή skill:** edit στο repo → `git push` → στα μηχανήματα τραβάς τη νέα έκδοση (δες **Ενημέρωση** πιο κάτω).
+- Μετά το install, τα skills φορτώνονται **αυτόματα σε κάθε νέο session** — δεν κάνεις τίποτα.
+
+---
+
+## Ενημέρωση σε νέα έκδοση (όταν προστεθεί/αλλάξει skill)
+
+> ⚠️ **Προσοχή:** το `/plugin marketplace update` ανανεώνει **μόνο τον κατάλογο** — ΔΕΝ αναβαθμίζει
+> το ήδη εγκατεστημένο plugin. Ομοίως το `/reload-plugins` φορτώνει μόνο ό,τι είναι ήδη στον δίσκο,
+> δεν τραβάει νέα έκδοση. Γι' αυτό μετά από ένα `git push` το νέο skill **δεν εμφανίζεται** με σκέτο
+> `marketplace update` (π.χ. ο μετρητής μένει 15 αντί 16).
+
+**Σωστός τρόπος — uninstall + reinstall:**
+
+```
+/plugin uninstall oc-tools@claude_skills
+/plugin marketplace update claude_skills
+/plugin install oc-tools@claude_skills
+/reload-plugins
+```
+
+Επιβεβαίωση: `/plugin` → tab **Installed** → `oc-tools` πρέπει να δείχνει τη νέα `version` και τον
+σωστό αριθμό skills.
+
+**Αν πάλι δείχνει παλιά έκδοση → καθάρισε το cache** (κρατιέται τοπικά):
+
+```bash
+rm -rf ~/.claude/plugins/cache         # Windows: C:\Users\<user>\.claude\plugins\cache
+```
+Μετά restart το Claude Code και ξανά `install` + `/reload-plugins`.
+
+**💡 Auto-update (για να μη γίνεται χειροκίνητα):** `/plugin` → tab **Marketplaces** → `claude_skills`
+→ **Enable auto-update**. Από εκεί και πέρα κάθε `git push` τραβιέται μόνο του στο startup.
+
+> 🔖 Καλή πρακτική: σε κάθε αλλαγή skill, ανέβαζε το `version` στο `oc-tools/.claude-plugin/plugin.json`
+> (π.χ. 0.2.0 → 0.3.0). Έτσι ξεχωρίζει καθαρά ότι υπάρχει νέα έκδοση.
 
 ---
 
@@ -53,7 +87,7 @@ claude plugin install oc-tools@claude_skills
 |---|---|
 | Ίδιος server, ξανά SSH / άλλα projects / νέα sessions | ❌ Όχι — μένει στο `~/.claude`, φορτώνει αυτόματα |
 | **Καινούργιος** server (πρώτη φορά) | ✅ Ναι, μία φορά τα δύο `/plugin` commands |
-| Άλλαξε κάτι στο repo (`git push`) | Στους servers: `/plugin marketplace update claude_skills` |
+| Άλλαξε κάτι στο repo (`git push`) | Στους servers: uninstall + reinstall (δες **Ενημέρωση σε νέα έκδοση**) ή auto-update |
 
 ⚠️ **Εφήμεροι servers** (containers/VMs που στήνονται καθαροί κάθε φορά, ή χάνεται το `~/.claude`):
 εκεί το install χάνεται και ξαναχρειάζεται. Αυτοματοποίησέ το στο provisioning / `.bashrc` / dotfiles
